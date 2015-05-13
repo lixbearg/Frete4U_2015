@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frete4U | @ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/style")
+    @Scripts.Render("~/bundles/modernizr")
+    <!--[if !IE 7]>
+        <style type="text/css">
+            #wrap {display:table;height:100%}
+        </style>
+    <![endif]-->
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Frete4ULogo", "Index", "Home", new { area = "" }, new { @class = "logo" })
+            </div>
+            <div class="navbar-collapse collapse">
+                @Html.Partial("_LoginPartial")
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Início", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Como funciona", "ComoFunciona", "Home")</li>
+                    <li>@Html.ActionLink("Buscar", "Buscar", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content content">
+        @RenderBody()
+        <hr />
+        <footer class="footerprincipal">
+            <a href="#" class="btn btn-link" data-toggle="modal" data-target="#termosDeUso_Modal">Termos de Uso</a>
+            <a href="#" class="btn btn-link">Privacidade</a>
+            <p class="btn btn-link">@Html.ActionLink("Sobre o grupo", "SobreGrupo", "Home")</p>
+            <p class="btn btn-link">@Html.ActionLink("Documentação", "Documentacao", "Home")</p>
+            <p>Centro Universitário Una - Barreiro | Análise e Desenvolvimento de Sistemas | 1/2015</p>
+        </footer>
+    </div>
+
+    <!--MODAL TERMOS DE USO-->
+    <div class="modal modal-wide fade" id="termosDeUso_Modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" id="termosDeUso_Modal_Cabecalho">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><b>Termos de Uso</b></h4>
+                </div>
+                <div class="modal-body" id="termosDeUso_Modal_Conteudo">
+                    <p>
+                        Leia com atenção os termos abaixo. Ao se cadastrar no Frete4U você declara ter lido e estar de acordo com as condições aqui apresentadas. A recusa destes termos impedirá o cadastro e o acesso a todas as funções que são dependentes do mesmo.
+                    </p>
+                    <p>
+                        <b>1. SERVIÇOS OFERECIDOS</b><br />
+                        <b>1.1</b> Este termo se aplica para regular o uso do serviço oferecido pelo Frete4U aos solicitantes e prestadores de serviço, qual seja, possibilitar a escolha, pelos solicitantes, de empresas ou trabalhadores autônomos cadastrados e, via on-line, visualizar informações de contato e/ou enviar solicitações de prestação de serviços de frete, ou, no caso de prestadores de serviço, divulgar seus serviços para usuários interessados. O serviço consiste, portanto, em aproximar, através do nosso site, os solicitantes e os prestadores de serviço cadastrados, possibilitando que os solicitantes encaminhem aos prestadores de serviço, um resumo aproximado do serviço que está sendo solicitado para agilizar a comunicação entre as partes.<br />
+                        <b>1.2</b> Desde logo fica esclarecido ao usuário que o serviço oferecido pelo Frete4U se relaciona apenas à intermediação de serviços de entrega e frete, não se responsabilizando por prazos, valores ou manuseio inadequado de itens transportados, sendo estes de responsabilidade integral do prestador de serviços, a quem deverão ser direcionados quaisquer reclamações acerca do serviço executado.
+                    </p>
+                    <p>
+                        <b>2. CADASTRO</b><br />
+                        <b>2.1</b> O usuário, seja solicitante ou prestador de serviço, para utilizar os serviços acima descritos, deverá ter capacidade jurídica para atos civis e deverá, necessariamente, prestar as informações exigidas no cadastro, assumindo integralmente a responsabilidade (inclusive cível e criminal) pela exatidão e veracidade das informações fornecidas no cadastro.<br />
+                        <b>2.1.1</b> Em caso de informações incorretas, inverídicas ou não confirmadas, bem assim na hipótese da negativa em corrigi-las ou enviar documentação que comprove a correção, o Frete4U se reserva o direito de não concluir o cadastramento em curso ou, ainda, de bloquear o cadastro já existente, impedindo o usuário de utilizar os serviços on-line até que a situação de anomalia esteja regularizada. O Frete4U se reserva o direito de impedir, a seu critério, novos cadastros, ou cancelar os já efetuados, em caso de ser detectada anomalia que, em sua análise, seja revestida de gravidade ou demonstre tentativa deliberada de burlar as regras aqui descritas, obrigatórias para todos os usuários. Também agirá de tal forma caso verifique descumprimento, pelo usuário, de qualquer obrigação prevista no presente termo.<br />
+                        <b>2.2</b> Efetuado com sucesso o cadastro, o usuário terá acesso aos serviços por meio de login e senha, dados esses que se compromete a não divulgar a terceiros, ficando sob sua exclusiva responsabilidade qualquer solicitação de serviço que seja feita com o uso de login e senha de sua titularidade.
+                    </p>
+                    <p>
+                        <b>3. OBRIGAÇÕES DO USUÁRIO</b><br />
+                        <b>3.1</b> Efetuado com sucesso o cadastro do usuário, este se obriga a não divulgar a terceiros login e senha de acesso, nem permitir o uso de tais informações por terceiros, responsabilizando-se pelas consequências do uso de login e senha de sua titularidade.<br />
+                        <b>3.2</b> É obrigação do usuário fornecer informações cadastrais totalmente verídicas e exatas, responsabilizando-se exclusiva e integralmente por todo o conteúdo por si informado no item cadastro.<br />
+                        <b>3.3</b> O usuário enquanto solicitante se obriga, também, a pagar integralmente o valor cobrado pelo serviço prestado à empresa ou trabalhador autônomo antes ou após a execução do serviço, sendo acordado de antemão entre as partes valores e formas de pagamento.
+                    </p>
+                    <p>
+                        <b>4. OBRIGAÇÕES DO FRETE4U</b><br />
+                        <b>4.1</b> Disponibilizar através do sistema Frete4U espaço virtual que permita ao solicitante devidamente cadastrado encontrar, visualizar informações para contato e enviar, caso deseje, solicitações de serviços de entrega para prestadores de serviço cadastrados.<br />
+                        <b>4.2</b> Proteger a confidencialidade de todas as informações e cadastros relativos aos usuários, solicitantes ou prestadores de serviço. Contudo, não responderá pela reparação de prejuízos que possam ser derivados de apreensão e captação de dados por parte de terceiros que, rompendo os sistemas de segurança, consigam acessar essas informações.
+                    </p>
+                    <p>
+                        <b>5. MODIFICAÇÕES DESTE TERMO</b><br />
+                        <b>5.1</b> O presente TERMO DE USO poderá, a qualquer tempo, ter seu conteúdo, ou parte dele, modificados para adequações e inserções, tudo com vistas ao aprimoramento dos serviços disponibilizados.<br />
+                        <b>5.2</b> As novas condições entrarão em vigência assim que sejam veiculadas no site, sendo possível ao usuário manifestar oposição a quaisquer dos termos modificados, desde que o faça por escrito, através de um meio de contato disponibilizado no site, o que gerará o cancelamento de seu cadastro.
+                    </p>
+                    <p>
+                        <b>6. CANAL DE COMUNICAÇÃO</b><br />
+                        <b>6.1</b> Para estabelecer contato entre Frete4U e o usuário, fica disponibilizado um endereço eletrônico, sendo certo que o usuário se obriga, igualmente, a manter em seu cadastro endereço eletrônico atual por intermédio do qual se farão as comunicações a ele dirigidas pelos responsáveis pelo sistema, desde logo emprestando-se validade jurídica e efetividade a esse meio eletrônico de troca de informações recíprocas.
+                    </p>
+                    <p>
+                        <b>7. ACEITAÇÃO DO TERMO DE USO</b><br />
+                        <b>7.1</b> O usuário declara ter lido, entendido e que aceita todas as regras, condições e obrigações estabelecidas no presente termo.
+                    </p>
+                </div>
+                <div class="modal-footer" id="termosDeUso_Modal_Rodape">
+                    <button type="button" class="btn btn-amarelo" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--FIM DO MODAL TERMOS DE USO-->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,54 @@
+﻿.semborda:focus{
+    border-color: #cccccc !important;
+    outline: 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.nowidth{
+    max-width:none;   
+}
+
+label{
+    font-weight:normal;
+}
+
+.cursor{
+    cursor:pointer !important;
+    margin-bottom:-1px;
+}
+
+ul{
+    padding:0;
+    margin:0;
+}
+.col-xs-12 ul{
+    padding-left: 20px;
+    margin:0;
+}
+
+ul li{
+    list-style:none;    
+}
+
+.modal.modal-wide .modal-dialog {
+    width: 95%;
+    text-align: justify;
+}
+.modal.modal-wide .modal-dialog h4 {
+    text-align:center;
+}
+.modal-wide .modal-body {
+    overflow-y: auto;
+}
+
+.btn-amarelo{
+    background-color:#eb0; 
+    color:white;
+}
+
+.bigcheck{
+    transform:scale(2,2); 
+    margin:6px 0 0 6px !important; 
+    cursor:pointer; 
+}

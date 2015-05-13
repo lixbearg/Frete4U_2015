@@ -1,0 +1,159 @@
+﻿@using Frete4U.Models
+@model tb_cd_cidades
+
+@{
+    ViewBag.Title = "Busca";
+}
+<h1>@ViewBag.Title</h1><hr />
+<div class="container" style="margin-top:10px;">
+    <div class="row">
+        @Html.LabelFor(m => m.nom_cidade, new { @class = "col-md-3 col-lg-2 control-label", style = "margin-right:0!important; padding-right:0 !important; font-weight:bold !important;" })
+        <div class="col-md-12 col-sm-12 col-lg-10 col-xs-12">
+            @Html.TextBoxFor(m => m.nom_cidade, new { @class = "form-control nowidth", placeholder = "  Endereço de Origem" })
+        </div>
+    </div>
+    <div class="row" style="margin:10px -15px 8px -15px;">
+        @Html.LabelFor(m => m.nom_cidade, new { @class = "col-md-3 col-lg-2 control-label", style = "margin-right:0!important; padding-right:0 !important; font-weight:bold !important;" })
+        <div class="col-md-12 col-sm-12 col-lg-10 col-xs-12">
+            @Html.TextBoxFor(m => m.nom_cidade, new { @class = "form-control nowidth", placeholder = "  Endereço de Destino" })
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" style="margin:0 !important; padding:0 !important;">
+        <div class="panel panel-default">
+            <button class="btn btn-amarelo" style="width:100%; border-radius:0;" onclick="if ($('.mostrar').is(':visible')) { $('.mostrar').hide('fast'); $('#icon').removeClass('glyphicon-minus'); $('#icon').addClass('glyphicon-plus') } else { $('.mostrar').show('fast'); $('#icon').removeClass('glyphicon-plus'); $('#icon').addClass('glyphicon-minus') }">
+                <span style="float:left;">Filtros <span id="icon" class="glyphicon glyphicon-plus"></span></span>
+            </button>
+            <div class="row mostrar" style="margin:20px 0;  display:none;">
+                <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
+                    <div>
+                        <ul>
+                            <li>
+                                <b>Tipo de entrega:</b>
+                                <ul>
+                                    <li><label class="cursor"><input type="checkbox" />  Pequenas entregas</label></li>
+                                    <li><label class="cursor"><input type="checkbox" />  Delivery(Comida)</label></li>
+                                    <li><label class="cursor"><input type="checkbox" />  Mudança</label></li>
+                                    <li><label class="cursor"><input type="checkbox" />  Frete(Grande porte)</label></li>
+                                    <li><label class="cursor"><input type="checkbox" />  Guicho</label></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
+                    <div>
+                        <ul>
+                            <li>
+                                <b>Tipo de veiculo:</b>
+                                <ul>
+                                    <li><label class="cursor"><input type="checkbox" />  Moto</label></li>
+                                    <li><label class="cursor"><input type="checkbox" />  Caminhonete</label></li>
+                                    <li><label class="cursor"><input type="checkbox" />  Furgão</label></li>
+                                    <li><label class="cursor"><input type="checkbox" />  Reboque</label></li>
+                                    <li><label class="cursor"><input type="checkbox" />  Caminhão</label></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
+                    <div>
+                        <ul>
+                            <li>
+                                <b>Tipo de produto:</b>
+                                <ul>
+                                    <li><label class="cursor"><input type="checkbox" />  Encomenda</label></li>
+                                    <li><label class="cursor"><input type="checkbox" />  Móveis</label></li>
+                                    <li><label class="cursor"><input type="checkbox" />  Veiculo</label></li>
+                                    <li><label class="cursor"><input type="checkbox" />  Frágil</label></li>
+                                    <li><label class="cursor"><input type="checkbox" />  Inflamável</label></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
+                    <div>
+                        <ul>
+                            <li>
+                                <b>Volume:</b>
+                                <ul>
+                                    <li><label class="cursor"><input type="checkbox" />  Pequeno</label></li>
+                                    <li><label class="cursor"><input type="checkbox" />  Médio</label></li>
+                                    <li><label class="cursor"><input type="checkbox" />  Grande</label></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" style="text-align:center;">
+            <button class="btn btn-success" onclick="$('#divResultadosBusca').show('swing');">
+                Buscar &nbsp;&nbsp;<span id=" icon" class="glyphicon glyphicon-search">
+                </span>
+            </button>&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-default" onclick="$('#divResultadosBusca').hide('slow');">
+                Limpar
+            </button>
+        </div>
+    </div>
+    @{
+        ViewBag.Title = "Resultados";
+    }
+    <div id="divResultadosBusca" style="display:none;">
+        <h1>@ViewBag.Title</h1><hr />
+        <h4>
+            <label class="cursor">
+                <input type="checkbox" id="Todos" class="bigcheck" onclick="marcardesmarcar();" />&nbsp; <span id="StrMarcarDesmarcar">Escolher Todos</span>
+            </label>
+        </h4><br />
+        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" style="margin:0 !important; padding:0 !important;">
+            <div class="panel panel-default">
+                <input type="checkbox" id="" name="marcar" class="marcar bigcheck" data-toggle="tooltip" data-placement="right" title="ESCOLHER / DESMARCAR EMPRESA DE FRETE DO ZÉ" />
+                <div class="row" style="margin:20px 0;">
+                    <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
+                        <center><img src="http://www.blogadao.com/imagens/2013/01/frases-de-caminhao.png" width="150" height="150" class="img-rounded"></center>
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                        <h2>EMPRESA DE FRETE DO ZÉ</h2>
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12" style="height:30px !important;">
+                        <h4 style="margin:0;">Distância: 2KM</h4><br />
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-lg-3 col-xs-12" style="height:30px !important;">
+                        ESTRELAS
+                    </div>
+                    <div class="col-md-5 col-sm-5 col-lg-6 col-xs-12">
+                        <h3 style="margin:0;">CAMINHONEIRO</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <input type="checkbox" id="" name="marcar" class="marcar bigcheck" data-toggle="tooltip" data-placement="right" title="ESCOLHER / DESMARCAR PAULINHO MOTOBOY" />
+                <div class="row" style="margin:20px 0;">
+                    <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
+                        <center><img src="http://thumb.mais.uol.com.br/photo/9816478.jpg?ver=0" width="150" height="150" class="img-rounded"></center>
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                        <h2>PAULINHO MOTOBOY</h2>
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12" style="height:30px !important;">
+                        <h4 style="margin:0;">Distância: 2KM</h4><br />
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-lg-3 col-xs-12" style="height:30px !important;">
+                        ESTRELAS
+                    </div>
+                    <div class="col-md-5 col-sm-5 col-lg-6 col-xs-12">
+                        <h3 style="margin:0;">MOTOBOY</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

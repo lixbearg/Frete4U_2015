@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Frete4UModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_atendimento_prestador">
+          <Key>
+            <PropertyRef Name="cod_prestador" />
+            <PropertyRef Name="cod_cidade" />
+          </Key>
+          <Property Name="cod_prestador" Type="int" Nullable="false" />
+          <Property Name="cod_cidade" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_cd_cidades">
+          <Key>
+            <PropertyRef Name="cod_cidade" />
+          </Key>
+          <Property Name="cod_cidade" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_cidade" Type="varchar" MaxLength="100" />
+          <Property Name="cod_estado" Type="numeric" Precision="2" Scale="0" />
+        </EntityType>
+        <EntityType Name="tb_cd_estados">
+          <Key>
+            <PropertyRef Name="cod_estado" />
+          </Key>
+          <Property Name="cod_estado" Type="numeric" Precision="2" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_estado" Type="varchar" MaxLength="100" />
+          <Property Name="uf" Type="char" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="tb_cd_prestador">
+          <Key>
+            <PropertyRef Name="cod_prestador" />
+          </Key>
+          <Property Name="cod_prestador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="255" />
+          <Property Name="nomeEmpresa" Type="varchar" MaxLength="255" />
+          <Property Name="CPF" Type="numeric" Precision="11" Scale="0" />
+          <Property Name="CNPJ" Type="numeric" Precision="14" Scale="0" />
+          <Property Name="logradouro" Type="varchar" MaxLength="255" />
+          <Property Name="numeroEndereco" Type="numeric" Precision="15" Scale="0" />
+          <Property Name="bairro" Type="varchar" MaxLength="255" />
+          <Property Name="Complemento" Type="varchar" MaxLength="255" />
+          <Property Name="cod_cidade" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="cod_estado" Type="numeric" Precision="2" Scale="0" />
+        </EntityType>
+        <EntityType Name="tb_cd_prestador_transporte">
+          <Key>
+            <PropertyRef Name="cod_prestador" />
+            <PropertyRef Name="cod_entrega" />
+          </Key>
+          <Property Name="cod_prestador" Type="int" Nullable="false" />
+          <Property Name="cod_entrega" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_cd_tipo_entrega">
+          <Key>
+            <PropertyRef Name="cod_entrega" />
+          </Key>
+          <Property Name="cod_entrega" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tb_cd_transporte">
+          <Key>
+            <PropertyRef Name="cod_transporte" />
+            <PropertyRef Name="cod_entrega" />
+          </Key>
+          <Property Name="cod_transporte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="100" />
+          <Property Name="cod_entrega" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_atendimento_cod_cidade">
+          <End Role="tb_cd_cidades" Type="Self.tb_cd_cidades" Multiplicity="1" />
+          <End Role="tb_atendimento_prestador" Type="Self.tb_atendimento_prestador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cd_cidades">
+              <PropertyRef Name="cod_cidade" />
+            </Principal>
+            <Dependent Role="tb_atendimento_prestador">
+              <PropertyRef Name="cod_cidade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_atendimento_prestador">
+          <End Role="tb_cd_prestador" Type="Self.tb_cd_prestador" Multiplicity="1" />
+          <End Role="tb_atendimento_prestador" Type="Self.tb_atendimento_prestador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cd_prestador">
+              <PropertyRef Name="cod_prestador" />
+            </Principal>
+            <Dependent Role="tb_atendimento_prestador">
+              <PropertyRef Name="cod_prestador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_cd_cidades">
+          <End Role="tb_cd_estados" Type="Self.tb_cd_estados" Multiplicity="0..1" />
+          <End Role="tb_cd_cidades" Type="Self.tb_cd_cidades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cd_estados">
+              <PropertyRef Name="cod_estado" />
+            </Principal>
+            <Dependent Role="tb_cd_cidades">
+              <PropertyRef Name="cod_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_prestador_transporte_entrega">
+          <End Role="tb_cd_tipo_entrega" Type="Self.tb_cd_tipo_entrega" Multiplicity="1" />
+          <End Role="tb_cd_prestador_transporte" Type="Self.tb_cd_prestador_transporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cd_tipo_entrega">
+              <PropertyRef Name="cod_entrega" />
+            </Principal>
+            <Dependent Role="tb_cd_prestador_transporte">
+              <PropertyRef Name="cod_entrega" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_prestador_transporte_prestador">
+          <End Role="tb_cd_prestador" Type="Self.tb_cd_prestador" Multiplicity="1" />
+          <End Role="tb_cd_prestador_transporte" Type="Self.tb_cd_prestador_transporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cd_prestador">
+              <PropertyRef Name="cod_prestador" />
+            </Principal>
+            <Dependent Role="tb_cd_prestador_transporte">
+              <PropertyRef Name="cod_prestador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_transporte_entrega">
+          <End Role="tb_cd_tipo_entrega" Type="Self.tb_cd_tipo_entrega" Multiplicity="1" />
+          <End Role="tb_cd_transporte" Type="Self.tb_cd_transporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cd_tipo_entrega">
+              <PropertyRef Name="cod_entrega" />
+            </Principal>
+            <Dependent Role="tb_cd_transporte">
+              <PropertyRef Name="cod_entrega" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Frete4UModelStoreContainer">
+          <EntitySet Name="tb_atendimento_prestador" EntityType="Self.tb_atendimento_prestador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_cd_cidades" EntityType="Self.tb_cd_cidades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_cd_estados" EntityType="Self.tb_cd_estados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_cd_prestador" EntityType="Self.tb_cd_prestador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_cd_prestador_transporte" EntityType="Self.tb_cd_prestador_transporte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_cd_tipo_entrega" EntityType="Self.tb_cd_tipo_entrega" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_cd_transporte" EntityType="Self.tb_cd_transporte" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_atendimento_cod_cidade" Association="Self.fk_atendimento_cod_cidade">
+            <End Role="tb_cd_cidades" EntitySet="tb_cd_cidades" />
+            <End Role="tb_atendimento_prestador" EntitySet="tb_atendimento_prestador" />
+          </AssociationSet>
+          <AssociationSet Name="fk_atendimento_prestador" Association="Self.fk_atendimento_prestador">
+            <End Role="tb_cd_prestador" EntitySet="tb_cd_prestador" />
+            <End Role="tb_atendimento_prestador" EntitySet="tb_atendimento_prestador" />
+          </AssociationSet>
+          <AssociationSet Name="fk_cd_cidades" Association="Self.fk_cd_cidades">
+            <End Role="tb_cd_estados" EntitySet="tb_cd_estados" />
+            <End Role="tb_cd_cidades" EntitySet="tb_cd_cidades" />
+          </AssociationSet>
+          <AssociationSet Name="fk_prestador_transporte_entrega" Association="Self.fk_prestador_transporte_entrega">
+            <End Role="tb_cd_tipo_entrega" EntitySet="tb_cd_tipo_entrega" />
+            <End Role="tb_cd_prestador_transporte" EntitySet="tb_cd_prestador_transporte" />
+          </AssociationSet>
+          <AssociationSet Name="fk_prestador_transporte_prestador" Association="Self.fk_prestador_transporte_prestador">
+            <End Role="tb_cd_prestador" EntitySet="tb_cd_prestador" />
+            <End Role="tb_cd_prestador_transporte" EntitySet="tb_cd_prestador_transporte" />
+          </AssociationSet>
+          <AssociationSet Name="fk_transporte_entrega" Association="Self.fk_transporte_entrega">
+            <End Role="tb_cd_tipo_entrega" EntitySet="tb_cd_tipo_entrega" />
+            <End Role="tb_cd_transporte" EntitySet="tb_cd_transporte" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Frete4UModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tb_cd_cidades">
+          <Key>
+            <PropertyRef Name="cod_cidade" />
+          </Key>
+          <Property Name="cod_cidade" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_cidade" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cod_estado" Type="Decimal" Precision="2" Scale="0" />
+          <NavigationProperty Name="tb_cd_estados" Relationship="Self.fk_cd_cidades" FromRole="tb_cd_cidades" ToRole="tb_cd_estados" />
+          <NavigationProperty Name="tb_cd_prestador" Relationship="Self.tb_atendimento_prestador" FromRole="tb_cd_cidades" ToRole="tb_cd_prestador" />
+        </EntityType>
+        <EntityType Name="tb_cd_estados">
+          <Key>
+            <PropertyRef Name="cod_estado" />
+          </Key>
+          <Property Name="cod_estado" Type="Decimal" Precision="2" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="uf" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="tb_cd_cidades" Relationship="Self.fk_cd_cidades" FromRole="tb_cd_estados" ToRole="tb_cd_cidades" />
+        </EntityType>
+        <EntityType Name="tb_cd_prestador">
+          <Key>
+            <PropertyRef Name="cod_prestador" />
+          </Key>
+          <Property Name="cod_prestador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="nomeEmpresa" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CPF" Type="Decimal" Precision="11" Scale="0" />
+          <Property Name="CNPJ" Type="Decimal" Precision="14" Scale="0" />
+          <Property Name="logradouro" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="numeroEndereco" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="bairro" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Complemento" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="cod_cidade" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="cod_estado" Type="Decimal" Precision="2" Scale="0" />
+          <NavigationProperty Name="tb_cd_cidades" Relationship="Self.tb_atendimento_prestador" FromRole="tb_cd_prestador" ToRole="tb_cd_cidades" />
+          <NavigationProperty Name="tb_cd_tipo_entrega" Relationship="Self.tb_cd_prestador_transporte" FromRole="tb_cd_prestador" ToRole="tb_cd_tipo_entrega" />
+        </EntityType>
+        <EntityType Name="tb_cd_tipo_entrega">
+          <Key>
+            <PropertyRef Name="cod_entrega" />
+          </Key>
+          <Property Name="cod_entrega" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_cd_transporte" Relationship="Self.fk_transporte_entrega" FromRole="tb_cd_tipo_entrega" ToRole="tb_cd_transporte" />
+          <NavigationProperty Name="tb_cd_prestador" Relationship="Self.tb_cd_prestador_transporte" FromRole="tb_cd_tipo_entrega" ToRole="tb_cd_prestador" />
+        </EntityType>
+        <EntityType Name="tb_cd_transporte">
+          <Key>
+            <PropertyRef Name="cod_transporte" />
+            <PropertyRef Name="cod_entrega" />
+          </Key>
+          <Property Name="cod_transporte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cod_entrega" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_cd_tipo_entrega" Relationship="Self.fk_transporte_entrega" FromRole="tb_cd_transporte" ToRole="tb_cd_tipo_entrega" />
+        </EntityType>
+        <Association Name="fk_cd_cidades">
+          <End Role="tb_cd_estados" Type="Self.tb_cd_estados" Multiplicity="0..1" />
+          <End Role="tb_cd_cidades" Type="Self.tb_cd_cidades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cd_estados">
+              <PropertyRef Name="cod_estado" />
+            </Principal>
+            <Dependent Role="tb_cd_cidades">
+              <PropertyRef Name="cod_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_transporte_entrega">
+          <End Role="tb_cd_tipo_entrega" Type="Self.tb_cd_tipo_entrega" Multiplicity="1" />
+          <End Role="tb_cd_transporte" Type="Self.tb_cd_transporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cd_tipo_entrega">
+              <PropertyRef Name="cod_entrega" />
+            </Principal>
+            <Dependent Role="tb_cd_transporte">
+              <PropertyRef Name="cod_entrega" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tb_atendimento_prestador">
+          <End Role="tb_cd_cidades" Type="Self.tb_cd_cidades" Multiplicity="*" />
+          <End Role="tb_cd_prestador" Type="Self.tb_cd_prestador" Multiplicity="*" />
+        </Association>
+        <Association Name="tb_cd_prestador_transporte">
+          <End Role="tb_cd_tipo_entrega" Type="Self.tb_cd_tipo_entrega" Multiplicity="*" />
+          <End Role="tb_cd_prestador" Type="Self.tb_cd_prestador" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Frete4UEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tb_cd_cidades" EntityType="Self.tb_cd_cidades" />
+          <EntitySet Name="tb_cd_estados" EntityType="Self.tb_cd_estados" />
+          <EntitySet Name="tb_cd_prestador" EntityType="Self.tb_cd_prestador" />
+          <EntitySet Name="tb_cd_tipo_entrega" EntityType="Self.tb_cd_tipo_entrega" />
+          <EntitySet Name="tb_cd_transporte" EntityType="Self.tb_cd_transporte" />
+          <AssociationSet Name="fk_cd_cidades" Association="Self.fk_cd_cidades">
+            <End Role="tb_cd_estados" EntitySet="tb_cd_estados" />
+            <End Role="tb_cd_cidades" EntitySet="tb_cd_cidades" />
+          </AssociationSet>
+          <AssociationSet Name="fk_transporte_entrega" Association="Self.fk_transporte_entrega">
+            <End Role="tb_cd_tipo_entrega" EntitySet="tb_cd_tipo_entrega" />
+            <End Role="tb_cd_transporte" EntitySet="tb_cd_transporte" />
+          </AssociationSet>
+          <AssociationSet Name="tb_atendimento_prestador" Association="Self.tb_atendimento_prestador">
+            <End Role="tb_cd_cidades" EntitySet="tb_cd_cidades" />
+            <End Role="tb_cd_prestador" EntitySet="tb_cd_prestador" />
+          </AssociationSet>
+          <AssociationSet Name="tb_cd_prestador_transporte" Association="Self.tb_cd_prestador_transporte">
+            <End Role="tb_cd_tipo_entrega" EntitySet="tb_cd_tipo_entrega" />
+            <End Role="tb_cd_prestador" EntitySet="tb_cd_prestador" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Frete4UModelStoreContainer" CdmEntityContainer="Frete4UEntities">
+          <EntitySetMapping Name="tb_cd_cidades">
+            <EntityTypeMapping TypeName="Frete4UModel.tb_cd_cidades">
+              <MappingFragment StoreEntitySet="tb_cd_cidades">
+                <ScalarProperty Name="cod_cidade" ColumnName="cod_cidade" />
+                <ScalarProperty Name="nom_cidade" ColumnName="nom_cidade" />
+                <ScalarProperty Name="cod_estado" ColumnName="cod_estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_cd_estados">
+            <EntityTypeMapping TypeName="Frete4UModel.tb_cd_estados">
+              <MappingFragment StoreEntitySet="tb_cd_estados">
+                <ScalarProperty Name="cod_estado" ColumnName="cod_estado" />
+                <ScalarProperty Name="nom_estado" ColumnName="nom_estado" />
+                <ScalarProperty Name="uf" ColumnName="uf" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_cd_prestador">
+            <EntityTypeMapping TypeName="Frete4UModel.tb_cd_prestador">
+              <MappingFragment StoreEntitySet="tb_cd_prestador">
+                <ScalarProperty Name="cod_prestador" ColumnName="cod_prestador" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="nomeEmpresa" ColumnName="nomeEmpresa" />
+                <ScalarProperty Name="CPF" ColumnName="CPF" />
+                <ScalarProperty Name="CNPJ" ColumnName="CNPJ" />
+                <ScalarProperty Name="logradouro" ColumnName="logradouro" />
+                <ScalarProperty Name="numeroEndereco" ColumnName="numeroEndereco" />
+                <ScalarProperty Name="bairro" ColumnName="bairro" />
+                <ScalarProperty Name="Complemento" ColumnName="Complemento" />
+                <ScalarProperty Name="cod_cidade" ColumnName="cod_cidade" />
+                <ScalarProperty Name="cod_estado" ColumnName="cod_estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_cd_tipo_entrega">
+            <EntityTypeMapping TypeName="Frete4UModel.tb_cd_tipo_entrega">
+              <MappingFragment StoreEntitySet="tb_cd_tipo_entrega">
+                <ScalarProperty Name="cod_entrega" ColumnName="cod_entrega" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_cd_transporte">
+            <EntityTypeMapping TypeName="Frete4UModel.tb_cd_transporte">
+              <MappingFragment StoreEntitySet="tb_cd_transporte">
+                <ScalarProperty Name="cod_transporte" ColumnName="cod_transporte" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="cod_entrega" ColumnName="cod_entrega" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="tb_atendimento_prestador" TypeName="Frete4UModel.tb_atendimento_prestador" StoreEntitySet="tb_atendimento_prestador">
+            <EndProperty Name="tb_cd_cidades">
+              <ScalarProperty Name="cod_cidade" ColumnName="cod_cidade" />
+            </EndProperty>
+            <EndProperty Name="tb_cd_prestador">
+              <ScalarProperty Name="cod_prestador" ColumnName="cod_prestador" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tb_cd_prestador_transporte" TypeName="Frete4UModel.tb_cd_prestador_transporte" StoreEntitySet="tb_cd_prestador_transporte">
+            <EndProperty Name="tb_cd_tipo_entrega">
+              <ScalarProperty Name="cod_entrega" ColumnName="cod_entrega" />
+            </EndProperty>
+            <EndProperty Name="tb_cd_prestador">
+              <ScalarProperty Name="cod_prestador" ColumnName="cod_prestador" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
