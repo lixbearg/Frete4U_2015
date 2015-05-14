@@ -10,29 +10,12 @@ namespace Frete4U.Controllers
 {
     public class BuscarController : Controller
     {
+        private Frete4UEntities db = new Frete4UEntities();
         //
         // GET: /Buscar/
-        public ActionResult Buscar()
+        public ActionResult Index()
         {
-            List<tb_cd_tipo_entrega> listateste = new List<tb_cd_tipo_entrega>();
-            BuscarView tbentrega = new BuscarView();
-            
-            listateste.Add(new tb_cd_tipo_entrega { descricao = "Delivery" });
-
-            BuscarView model = new BuscarView
-                {
-                    TiposEntrega = listateste,
-                    teste = "testestring"
-                };
-
-            return View(model);
+            return View(db.tb_cd_cidades.ToList());
         }
-        
-        // POST: /Buscar/
-        [HttpPost]
-         public ActionResult BuscarPost(string teste2)
-        {
-            return View(teste2);
-        }
-	}
+    }
 }
