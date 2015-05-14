@@ -1,4 +1,5 @@
 ﻿@using Frete4U.Models
+@model Frete4U.ViewModels.BuscarView
 
 @{
     ViewBag.Title = "Buscar";
@@ -127,7 +128,7 @@
                             Qualificação
                         </div>
                         <div class="col-md-5 col-sm-5 col-lg-6 col-xs-12">
-                            <p>@*@Html.DisplayFor(modelItem => item.nom_cidade)*@</p>
+                            <p>@Html.DisplayFor(modelItem => item)</p>
                         </div>
                     </div>
                 </div>
