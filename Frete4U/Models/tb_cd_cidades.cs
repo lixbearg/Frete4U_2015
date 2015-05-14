@@ -11,7 +11,6 @@ namespace Frete4U.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class tb_cd_cidades
     {
@@ -21,10 +20,7 @@ namespace Frete4U.Models
         }
     
         public decimal cod_cidade { get; set; }
-               
-        [Display(Name = "Cidade")]
         public string nom_cidade { get; set; }
-
         public Nullable<decimal> cod_estado { get; set; }
     
         public virtual tb_cd_estados tb_cd_estados { get; set; }

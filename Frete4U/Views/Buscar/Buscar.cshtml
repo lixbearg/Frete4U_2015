@@ -1,5 +1,5 @@
 ﻿@using Frete4U.Models
-@model tb_cd_cidades
+@model Frete4U.ViewModels.BuscarView
 
 @{
     ViewBag.Title = "Buscar";
@@ -8,12 +8,12 @@
 <div class="container" style="margin-top:10px;">
     <div class="row">
         <div class="col-md-12 col-sm-12 col-lg-10 col-xs-12">
-            @Html.TextBoxFor(m => m.nom_cidade, new { @class = "form-control nowidth", placeholder = "  Endereço de Origem" })
+            @Html.TextBoxFor(m => m.Cidades, new { @class = "form-control nowidth", placeholder = "  Endereço de Origem" })
         </div>
     </div>
     <div class="row" style="margin:10px -15px 8px -15px;">
         <div class="col-md-12 col-sm-12 col-lg-10 col-xs-12">
-            @Html.TextBoxFor(m => m.nom_cidade, new { @class = "form-control nowidth", placeholder = "  Endereço de Destino" })
+            @Html.TextBoxFor(m => m.Cidades, new { @class = "form-control nowidth", placeholder = "  Endereço de Destino" })
         </div>
     </div>
     <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" style="margin:0 !important; padding:0 !important;">
@@ -149,7 +149,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="panel panel-default">
+                Aqui vai aparecer a paranga
+                @Model.teste
+            </div>
     </div>
 </div>
 

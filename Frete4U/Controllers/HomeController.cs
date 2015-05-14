@@ -13,13 +13,6 @@ namespace TestPage.Controllers
             return View();
         }
 
-        public ActionResult Buscar()
-        {
-            ViewBag.Message = "Página de pesquisa.";
-
-            return View();
-        }
-
         public ActionResult ComoFunciona()
         {
             ViewBag.Message = "Ajuda sobre o funcionamento da aplicação.";

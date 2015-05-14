@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a26319b698f64a31ba0792c76f372303" Name="Diagram1">
-        <EntityTypeShape EntityType="Frete4UModel.tb_cd_cidades" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Frete4UModel.tb_cd_estados" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Frete4UModel.tb_cd_prestador" Width="1.5" PointX="3.5" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Frete4UModel.tb_cd_tipo_entrega" Width="1.5" PointX="5.875" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Frete4UModel.tb_cd_transporte" Width="1.5" PointX="5.875" PointY="3.125" IsExpanded="true" />
+      <Diagram DiagramId="24372f86b24644f597ca40e59ec2504d" Name="Diagram1">
+        <EntityTypeShape EntityType="Frete4UModel.tb_cd_cidades" Width="1.5" PointX="6.375" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Frete4UModel.tb_cd_estados" Width="1.5" PointX="6.625" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Frete4UModel.tb_cd_prestador" Width="1.5" PointX="4.125" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Frete4UModel.tb_cd_tipo_entrega" Width="1.5" PointX="1.875" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Frete4UModel.tb_cd_transporte" Width="1.5" PointX="2.125" PointY="3.5" IsExpanded="true" />
         <AssociationConnector Association="Frete4UModel.fk_cd_cidades" ManuallyRouted="false" />
         <AssociationConnector Association="Frete4UModel.fk_transporte_entrega" ManuallyRouted="false" />
         <AssociationConnector Association="Frete4UModel.tb_atendimento_prestador" ManuallyRouted="false" />
