@@ -110,7 +110,7 @@
         </h4><br />
         <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" style="margin:0 !important; padding:0 !important;">
 
-            @foreach (var item in Model)
+            @foreach (var item in Model.Cidades)
             {
                 <div class="panel panel-default">
                     <input type="checkbox" id="" name="marcar" class="marcar bigcheck" data-toggle="tooltip" data-placement="right" title="ESCOLHER / DESMARCAR EMPRESA DE FRETE DO ZÉ" />
@@ -128,7 +128,7 @@
                             Qualificação
                         </div>
                         <div class="col-md-5 col-sm-5 col-lg-6 col-xs-12">
-                            <p>@Html.DisplayFor(modelItem => item)</p>
+                            <p>@Html.DisplayFor(modelItem => item.nom_cidade)</p>
                         </div>
                     </div>
                 </div>

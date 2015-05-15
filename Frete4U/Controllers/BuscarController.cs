@@ -15,7 +15,11 @@ namespace Frete4U.Controllers
         // GET: /Buscar/
         public ActionResult Index()
         {
-            return View(db.tb_cd_cidades.ToList());
+            var model = new BuscarView
+            {
+                Cidades = db.tb_cd_cidades.ToList()
+            };
+            return View(model);
         }
     }
 }
