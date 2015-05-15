@@ -10,14 +10,16 @@ namespace Frete4U.Controllers
 {
     public class BuscarController : Controller
     {
-        private Frete4UEntities db = new Frete4UEntities();
+        private Frete4UEntities dbfrete4u = new Frete4UEntities();
+        private ApplicationDbContext dbasp = new ApplicationDbContext();
         //
         // GET: /Buscar/
         public ActionResult Index()
         {
             var model = new BuscarView
             {
-                Cidades = db.tb_cd_cidades.ToList()
+                Cidades = dbfrete4u.tb_cd_cidades.ToList(),
+                Usuarios = dbasp.Users.ToList()      
             };
             return View(model);
         }

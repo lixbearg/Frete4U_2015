@@ -12,7 +12,7 @@ namespace Frete4U.ViewModels
         public IEnumerable<tb_cd_cidades> Cidades { get; set; }
         public IEnumerable<tb_cd_tipo_entrega> TiposEntrega { get; set; }
         public IEnumerable<tb_cd_transporte> Trasportes { get; set; }
-        public IEnumerable<RegisterViewModel> Usuarios { get; set; }
+        public IEnumerable<ApplicationUser> Usuarios { get; set; }
         public string teste { get; set; }
     }
 }
