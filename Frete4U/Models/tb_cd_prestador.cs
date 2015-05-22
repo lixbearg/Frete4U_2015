@@ -11,29 +11,59 @@ namespace Frete4U.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class tb_cd_prestador
     {
         public tb_cd_prestador()
         {
-            this.tb_cd_cidades = new HashSet<tb_cd_cidades>();
             this.tb_cd_tipo_entrega = new HashSet<tb_cd_tipo_entrega>();
+            this.tb_cd_cidades = new HashSet<tb_cd_cidades>();
         }
     
-        public int cod_prestador { get; set; }
         public string Id { get; set; }
+
+        public int cod_prestador { get; set; }
+
+        [Required]
+        [Display(Name = "Nome")]
         public string nome { get; set; }
+        
+        [Required]
+        [Display(Name = "Empresa")]
         public string nomeEmpresa { get; set; }
+
+        [Required]
+        [Display(Name = "CPF")]
         public Nullable<decimal> CPF { get; set; }
+
+        [Display(Name = "CNPJ")]
         public Nullable<decimal> CNPJ { get; set; }
+
+        [Required]
+        [Display(Name = "Logradouro")]
         public string logradouro { get; set; }
+
+        [Required]
+        [Display(Name = "Número")]
         public Nullable<decimal> numeroEndereco { get; set; }
+
+        [Required]
+        [Display(Name = "Bairro")]
         public string bairro { get; set; }
-        public string Complemento { get; set; }
-        public Nullable<decimal> cod_cidade { get; set; }
-        public Nullable<decimal> cod_estado { get; set; }
+
+        [Display(Name = "Complemento")]
+        public string complemento { get; set; }
+
+        [Required]
+        [Display(Name = "Cidade")]
+        public string cidade { get; set; }
+
+        [Required]
+        [Display(Name = "Estado")]
+        public string estado { get; set; }
     
-        public virtual ICollection<tb_cd_cidades> tb_cd_cidades { get; set; }
         public virtual ICollection<tb_cd_tipo_entrega> tb_cd_tipo_entrega { get; set; }
+        public virtual ICollection<tb_cd_cidades> tb_cd_cidades { get; set; }
     }
 }

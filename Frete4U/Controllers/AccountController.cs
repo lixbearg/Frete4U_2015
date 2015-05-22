@@ -152,17 +152,7 @@ namespace Frete4U.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email,
-                                                 Email = model.Email,
-                                                 nome = model.Nome,
-                                                 nomeEmpresa = model.Empresa,
-                                                 CPF = model.CPF,
-                                                 CNPJ = model.CNPJ,
-                                                 logradouro = model.Logradouro,
-                                                 numeroEndereco = model.Numero,
-                                                 bairro = model.Bairro,
-                                                 Complemento = model.Complemento,
-                                                 cidade = model.Cidade,
-                                                 estado = model.Estado};
+                                                 Email = model.Email};
 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -175,7 +165,7 @@ namespace Frete4U.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Manage");
+                    return RedirectToAction("Create", "tb_cd_prestador", user.Id);
                 }
                 AddErrors(result);
             }

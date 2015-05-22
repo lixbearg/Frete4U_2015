@@ -80,37 +80,7 @@ namespace Frete4U.Models
         [Compare("Password", ErrorMessage = "A senha e a confirmação não estão iguais.")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
-        [Display(Name = "Nome")]
-        public string Nome { get; set; }
-
-        [Display(Name = "Empresa")]
-        public string Empresa { get; set; }
-
-        [Required]
-        [Display(Name = "CPF")]
-        public int CPF { get; set; }
-
-        [Display(Name = "CNPJ")]
-        public int? CNPJ { get; set; }
-
-        [Display(Name = "Logradouro")]
-        public string Logradouro { get; set; }
-
-        [Display(Name = "Número")]
-        public int? Numero { get; set; }
-
-        [Display(Name = "Bairro")]
-        public string Bairro { get; set; }
-
-        [Display(Name = "Complemento")]
-        public string Complemento { get; set; }
-
-        [Display(Name = "Cidade")]
-        public string Cidade { get; set; }
-
-        [Display(Name = "Estado")]
-        public string Estado { get; set; }
+        public tb_cd_prestador Prestador { get; set; }
 
     }
 

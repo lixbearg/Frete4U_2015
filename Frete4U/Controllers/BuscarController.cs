@@ -11,17 +11,19 @@ namespace Frete4U.Controllers
     public class BuscarController : Controller
     {
         private Frete4UEntities dbfrete4u = new Frete4UEntities();
-        private ApplicationDbContext dbasp = new ApplicationDbContext();
         //
         // GET: /Buscar/
-        public ActionResult Index()
+        public ActionResult Index(string CidadeOrigem, string CidadeDestino, string searchString)
         {
-            var model = new BuscarView
+            var prestadores = from p in dbfrete4u.tb_cd_prestador 
+                              select p;
+
+            if (!String.IsNullOrEmpty(searchString))
             {
-                Cidades = dbfrete4u.tb_cd_cidades.ToList(),
-                Usuarios = dbasp.Users.ToList()      
-            };
-            return View(model);
+                prestadores = prestadores.Where(p => p.nomeEmpresa.Contains(searchString));
+            }
+
+            return View(prestadores.ToList());
         }
     }
 }

@@ -9,7 +9,7 @@
  logradouro varchar(255),
  numeroEndereco numeric(15),
  bairro varchar(255),
- Complemento varchar(255),
+ complemento varchar(255),
  cod_cidade numeric(10),
  cod_estado numeric(2),
  constraint fk_prestador_aspuser foreign key(Id) references AspNetUsers

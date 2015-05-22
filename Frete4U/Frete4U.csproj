@@ -168,6 +168,7 @@
     <Compile Include="Controllers\BuscarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\tb_cd_prestadorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -224,6 +225,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="ClassDiagram2.cd" />
     <EntityDeploy Include="Models\Frete4UModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Frete4UModel.Designer.cs</LastGenOutput>
@@ -291,6 +294,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\tb_cd_prestador\Create.cshtml" />
+    <Content Include="Views\tb_cd_prestador\Delete.cshtml" />
+    <Content Include="Views\tb_cd_prestador\Details.cshtml" />
+    <Content Include="Views\tb_cd_prestador\Edit.cshtml" />
+    <Content Include="Views\tb_cd_prestador\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
