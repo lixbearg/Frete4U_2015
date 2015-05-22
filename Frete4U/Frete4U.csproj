@@ -225,8 +225,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="ClassDiagram1.cd" />
-    <Content Include="ClassDiagram2.cd" />
     <EntityDeploy Include="Models\Frete4UModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Frete4UModel.Designer.cs</LastGenOutput>
@@ -299,6 +297,8 @@
     <Content Include="Views\tb_cd_prestador\Details.cshtml" />
     <Content Include="Views\tb_cd_prestador\Edit.cshtml" />
     <Content Include="Views\tb_cd_prestador\Index.cshtml" />
+    <Content Include="Views\Home\SobreGrupo.cshtml" />
+    <Content Include="Views\Home\Documentacao.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -13,14 +13,14 @@ namespace Frete4U.Controllers
         private Frete4UEntities dbfrete4u = new Frete4UEntities();
         //
         // GET: /Buscar/
-        public ActionResult Index(string CidadeOrigem, string CidadeDestino, string searchString)
+        public ActionResult Index(string CidadeOrigem, string CidadeDestino)
         {
             var prestadores = from p in dbfrete4u.tb_cd_prestador 
                               select p;
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(CidadeOrigem) && !String.IsNullOrEmpty(CidadeOrigem))
             {
-                prestadores = prestadores.Where(p => p.nomeEmpresa.Contains(searchString));
+                prestadores = prestadores.Where(p => p.tb_cd_cidades.Any(c => c.nom_cidade == CidadeOrigem) && p.tb_cd_cidades.Any(c => c.nom_cidade == CidadeDestino));
             }
 
             return View(prestadores.ToList());

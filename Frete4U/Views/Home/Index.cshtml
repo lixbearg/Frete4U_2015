@@ -19,9 +19,9 @@
     <section id="buscaEndereco">
         @using (Html.BeginForm("Index", "Buscar", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
-            <div class="form_endereco">
-                @Html.TextBox("CidadeOrigem")
-                @Html.TextBox("CidadeDestino")
+            <div class="form-inline form">
+                @Html.TextBox("CidadeOrigem", null, new { @class = "form-control", placeholder = "Cidade de Origem" })
+                @Html.TextBox("CidadeDestino", null, new { @class = "form-control", placeholder = "Cidade de Destino" })
                 <input type="submit" value="Buscar" class="btn btn-default btn-lg semborda" />
             </div>
         }
