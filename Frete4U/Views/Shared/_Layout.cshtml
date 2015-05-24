@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frete4U | @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/style")
+    @Styles.Render("~/Content/carouselFullScreen")
     @Scripts.Render("~/bundles/modernizr")
     <!--[if !IE 7]>
         <style type="text/css">
             #wrap {display:table;height:100%}
         </style>
     <![endif]-->
+    @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top" id="MenuFixo">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -36,13 +37,15 @@
     </div>
     <div class="container body-content content">
         @RenderBody()
-        <hr />
-        <footer class="footerprincipal">
-            <a href="#" class="btn btn-link" data-toggle="modal" data-target="#termosDeUso_Modal">Termos de Uso</a>
-            <p class="btn btn-link">@Html.ActionLink("Sobre o grupo", "SobreGrupo", "Home")</p>
-            <p class="btn btn-link">@Html.ActionLink("Documentação", "Documentacao", "Home")</p>
-            <p>Centro Universitário Una - Barreiro | Análise e Desenvolvimento de Sistemas | 1/2015</p>
-        </footer>
+        <div id="esconder">
+            <hr />
+            <footer class="footerprincipal" id="footerprincipal">
+                <a href="#" class="btn btn-link" data-toggle="modal" data-target="#termosDeUso_Modal">Termos de Uso</a>
+                <p class="btn btn-link">@Html.ActionLink("Sobre o grupo", "SobreGrupo", "Home")</p>
+                <p class="btn btn-link">@Html.ActionLink("Documentação", "Documentacao", "Home")</p>
+                <p>Centro Universitário Una - Barreiro | Análise e Desenvolvimento de Sistemas | 1/2015</p>
+            </footer>
+        </div>
     </div>
 
     <!--MODAL TERMOS DE USO-->
@@ -99,9 +102,14 @@
             </div>
         </div>
     </div>
-    <!--FIM DO MODAL TERMOS DE USO-->
-    @Scripts.Render("~/bundles/jquery")
+    <script>
+        if ($('#paginacarousel').val() == "1") {
+            $('#esconder').css('display', 'none');
+        }
+    </script>
+    <!--FIM DO MODAL TERMOS DE USO-->    
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/carouselFullScreen")
     @Scripts.Render("~/bundles/js")
     @RenderSection("scripts", required: false)
 </body>

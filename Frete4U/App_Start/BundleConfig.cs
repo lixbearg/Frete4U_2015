@@ -25,10 +25,18 @@ namespace Frete4U
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
+            // JS Carousel Fullscreen
+            bundles.Add(new ScriptBundle("~/bundles/carouselFullScreen").Include(
+                      "~/Scripts/jquery.carousel.fullscreen.js"));
+
+            //Css Carousel FullScreen
+            bundles.Add(new StyleBundle("~/Content/carouselFullScreen").Include(
+                 "~/Content/jquery.carousel.fullscreen.css"));
+
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/style.css",
+                      "~/Content/style.css",                      
                       "~/Content/site.css"));
      
         }
