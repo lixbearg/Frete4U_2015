@@ -10,7 +10,8 @@
     <h4>Aqui você pode gerenciar dados de sua conta.</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dd>            
+        <dd>        
+            @Html.ActionLink("Alterar os dados da minha conta", "Edit", "tb_cd_prestador")<br/>    
             @if (Model.HasPassword)
             {
                 @Html.ActionLink("Alterar minha senha", "ChangePassword")

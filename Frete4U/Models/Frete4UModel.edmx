@@ -4,7 +4,9 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Frete4UModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Frete4UModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'aspnet-Frete4U-20150511114005.dbo.tb_atendimento_prestador' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="tb_atendimento_prestador">
           <Key>
             <PropertyRef Name="cod_prestador" />
@@ -33,8 +35,8 @@
           <Key>
             <PropertyRef Name="cod_prestador" />
           </Key>
-          <Property Name="cod_prestador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="cod_prestador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nome" Type="varchar" MaxLength="255" />
           <Property Name="nomeEmpresa" Type="varchar" MaxLength="255" />
           <Property Name="CPF" Type="numeric" Precision="11" Scale="0" />
@@ -42,17 +44,17 @@
           <Property Name="logradouro" Type="varchar" MaxLength="255" />
           <Property Name="numeroEndereco" Type="numeric" Precision="15" Scale="0" />
           <Property Name="bairro" Type="varchar" MaxLength="255" />
-          <Property Name="Complemento" Type="varchar" MaxLength="255" />
-          <Property Name="cod_cidade" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="cod_estado" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="complemento" Type="varchar" MaxLength="255" />
+          <Property Name="cidade" Type="varchar" MaxLength="255" />
+          <Property Name="estado" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="tb_cd_prestador_transporte">
           <Key>
             <PropertyRef Name="cod_prestador" />
-            <PropertyRef Name="cod_entrega" />
+            <PropertyRef Name="cod_transporte" />
           </Key>
           <Property Name="cod_prestador" Type="int" Nullable="false" />
-          <Property Name="cod_entrega" Type="int" Nullable="false" />
+          <Property Name="cod_transporte" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tb_cd_tipo_entrega">
           <Key>
@@ -114,7 +116,7 @@
               <PropertyRef Name="cod_entrega" />
             </Principal>
             <Dependent Role="tb_cd_prestador_transporte">
-              <PropertyRef Name="cod_entrega" />
+              <PropertyRef Name="cod_transporte" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -143,13 +145,18 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Frete4UModelStoreContainer">
-          <EntitySet Name="tb_atendimento_prestador" EntityType="Self.tb_atendimento_prestador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_cd_cidades" EntityType="Self.tb_cd_cidades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_cd_estados" EntityType="Self.tb_cd_estados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_cd_prestador" EntityType="Self.tb_cd_prestador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_cd_prestador_transporte" EntityType="Self.tb_cd_prestador_transporte" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_cd_tipo_entrega" EntityType="Self.tb_cd_tipo_entrega" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_cd_transporte" EntityType="Self.tb_cd_transporte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_atendimento_prestador" EntityType="Self.tb_atendimento_prestador" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tb_atendimento_prestador].[cod_prestador] AS [cod_prestador], 
+    [tb_atendimento_prestador].[cod_cidade] AS [cod_cidade]
+    FROM [dbo].[tb_atendimento_prestador] AS [tb_atendimento_prestador]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="fk_atendimento_cod_cidade" Association="Self.fk_atendimento_cod_cidade">
             <End Role="tb_cd_cidades" EntitySet="tb_cd_cidades" />
             <End Role="tb_atendimento_prestador" EntitySet="tb_atendimento_prestador" />
@@ -179,7 +186,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Frete4UModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Frete4UModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="tb_cd_cidades">
           <Key>
             <PropertyRef Name="cod_cidade" />
@@ -203,8 +210,8 @@
           <Key>
             <PropertyRef Name="cod_prestador" />
           </Key>
-          <Property Name="cod_prestador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cod_prestador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="nomeEmpresa" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="CPF" Type="Decimal" Precision="11" Scale="0" />
@@ -212,11 +219,11 @@
           <Property Name="logradouro" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="numeroEndereco" Type="Decimal" Precision="15" Scale="0" />
           <Property Name="bairro" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Complemento" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="cod_cidade" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="cod_estado" Type="Decimal" Precision="2" Scale="0" />
-          <NavigationProperty Name="tb_cd_cidades" Relationship="Self.tb_atendimento_prestador" FromRole="tb_cd_prestador" ToRole="tb_cd_cidades" />
+          <Property Name="complemento" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="cidade" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tb_cd_tipo_entrega" Relationship="Self.tb_cd_prestador_transporte" FromRole="tb_cd_prestador" ToRole="tb_cd_tipo_entrega" />
+          <NavigationProperty Name="tb_cd_cidades" Relationship="Self.tb_atendimento_prestador" FromRole="tb_cd_prestador" ToRole="tb_cd_cidades" />
         </EntityType>
         <EntityType Name="tb_cd_tipo_entrega">
           <Key>
@@ -261,12 +268,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="tb_atendimento_prestador">
-          <End Role="tb_cd_cidades" Type="Self.tb_cd_cidades" Multiplicity="*" />
-          <End Role="tb_cd_prestador" Type="Self.tb_cd_prestador" Multiplicity="*" />
-        </Association>
         <Association Name="tb_cd_prestador_transporte">
           <End Role="tb_cd_tipo_entrega" Type="Self.tb_cd_tipo_entrega" Multiplicity="*" />
+          <End Role="tb_cd_prestador" Type="Self.tb_cd_prestador" Multiplicity="*" />
+        </Association>
+        <Association Name="tb_atendimento_prestador">
+          <End Role="tb_cd_cidades" Type="Self.tb_cd_cidades" Multiplicity="*" />
           <End Role="tb_cd_prestador" Type="Self.tb_cd_prestador" Multiplicity="*" />
         </Association>
         <EntityContainer Name="Frete4UEntities" annotation:LazyLoadingEnabled="true">
@@ -283,12 +290,12 @@
             <End Role="tb_cd_tipo_entrega" EntitySet="tb_cd_tipo_entrega" />
             <End Role="tb_cd_transporte" EntitySet="tb_cd_transporte" />
           </AssociationSet>
-          <AssociationSet Name="tb_atendimento_prestador" Association="Self.tb_atendimento_prestador">
-            <End Role="tb_cd_cidades" EntitySet="tb_cd_cidades" />
-            <End Role="tb_cd_prestador" EntitySet="tb_cd_prestador" />
-          </AssociationSet>
           <AssociationSet Name="tb_cd_prestador_transporte" Association="Self.tb_cd_prestador_transporte">
             <End Role="tb_cd_tipo_entrega" EntitySet="tb_cd_tipo_entrega" />
+            <End Role="tb_cd_prestador" EntitySet="tb_cd_prestador" />
+          </AssociationSet>
+          <AssociationSet Name="tb_atendimento_prestador" Association="Self.tb_atendimento_prestador">
+            <End Role="tb_cd_cidades" EntitySet="tb_cd_cidades" />
             <End Role="tb_cd_prestador" EntitySet="tb_cd_prestador" />
           </AssociationSet>
         </EntityContainer>
@@ -319,8 +326,8 @@
           <EntitySetMapping Name="tb_cd_prestador">
             <EntityTypeMapping TypeName="Frete4UModel.tb_cd_prestador">
               <MappingFragment StoreEntitySet="tb_cd_prestador">
-                <ScalarProperty Name="cod_prestador" ColumnName="cod_prestador" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="cod_prestador" ColumnName="cod_prestador" />
                 <ScalarProperty Name="nome" ColumnName="nome" />
                 <ScalarProperty Name="nomeEmpresa" ColumnName="nomeEmpresa" />
                 <ScalarProperty Name="CPF" ColumnName="CPF" />
@@ -328,9 +335,9 @@
                 <ScalarProperty Name="logradouro" ColumnName="logradouro" />
                 <ScalarProperty Name="numeroEndereco" ColumnName="numeroEndereco" />
                 <ScalarProperty Name="bairro" ColumnName="bairro" />
-                <ScalarProperty Name="Complemento" ColumnName="Complemento" />
-                <ScalarProperty Name="cod_cidade" ColumnName="cod_cidade" />
-                <ScalarProperty Name="cod_estado" ColumnName="cod_estado" />
+                <ScalarProperty Name="complemento" ColumnName="complemento" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -351,17 +358,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="tb_atendimento_prestador" TypeName="Frete4UModel.tb_atendimento_prestador" StoreEntitySet="tb_atendimento_prestador">
-            <EndProperty Name="tb_cd_cidades">
-              <ScalarProperty Name="cod_cidade" ColumnName="cod_cidade" />
+          <AssociationSetMapping Name="tb_cd_prestador_transporte" TypeName="Frete4UModel.tb_cd_prestador_transporte" StoreEntitySet="tb_cd_prestador_transporte">
+            <EndProperty Name="tb_cd_tipo_entrega">
+              <ScalarProperty Name="cod_entrega" ColumnName="cod_transporte" />
             </EndProperty>
             <EndProperty Name="tb_cd_prestador">
               <ScalarProperty Name="cod_prestador" ColumnName="cod_prestador" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="tb_cd_prestador_transporte" TypeName="Frete4UModel.tb_cd_prestador_transporte" StoreEntitySet="tb_cd_prestador_transporte">
-            <EndProperty Name="tb_cd_tipo_entrega">
-              <ScalarProperty Name="cod_entrega" ColumnName="cod_entrega" />
+          <AssociationSetMapping Name="tb_atendimento_prestador" TypeName="Frete4UModel.tb_atendimento_prestador" StoreEntitySet="tb_atendimento_prestador">
+            <EndProperty Name="tb_cd_cidades">
+              <ScalarProperty Name="cod_cidade" ColumnName="cod_cidade" />
             </EndProperty>
             <EndProperty Name="tb_cd_prestador">
               <ScalarProperty Name="cod_prestador" ColumnName="cod_prestador" />
@@ -381,7 +388,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

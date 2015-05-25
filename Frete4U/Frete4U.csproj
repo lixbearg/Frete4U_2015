@@ -22,6 +22,7 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -168,6 +169,7 @@
     <Compile Include="Controllers\BuscarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\tb_cd_prestadorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -215,8 +217,11 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\bg_01.jpg" />
+    <Content Include="Content\images\bg_02.jpg" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\logo_frete4U_top.png" />
+    <Content Include="Content\jquery.carousel.fullscreen.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -246,6 +251,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.carousel.fullscreen.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -291,6 +297,13 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\tb_cd_prestador\Create.cshtml" />
+    <Content Include="Views\tb_cd_prestador\Delete.cshtml" />
+    <Content Include="Views\tb_cd_prestador\Details.cshtml" />
+    <Content Include="Views\tb_cd_prestador\Edit.cshtml" />
+    <Content Include="Views\tb_cd_prestador\Index.cshtml" />
+    <Content Include="Views\Home\SobreGrupo.cshtml" />
+    <Content Include="Views\Home\Documentacao.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

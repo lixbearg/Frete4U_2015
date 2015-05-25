@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\31325219\Source\Repos\Frete4U_2015\Frete4U\Models\Frete4UModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Lixbearg\Documents\Visual Studio 2013\Projects\Frete4U\Frete4U\Models\Frete4UModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
