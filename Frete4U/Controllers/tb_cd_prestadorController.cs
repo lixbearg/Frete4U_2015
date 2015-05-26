@@ -53,7 +53,7 @@ namespace Frete4U.Controllers
             {
                 db.tb_cd_prestador.Add(tb_cd_prestador);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Manage");
             }
 
             return View(tb_cd_prestador);

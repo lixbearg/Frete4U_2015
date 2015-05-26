@@ -273,7 +273,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\ComoFunciona.cshtml" />
+    <Content Include="Views\Home\Apresentacao.cshtml" />
     <Content Include="Views\Buscar\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -304,6 +304,8 @@
     <Content Include="Views\tb_cd_prestador\Index.cshtml" />
     <Content Include="Views\Home\SobreGrupo.cshtml" />
     <Content Include="Views\Home\Documentacao.cshtml" />
+    <Content Include="Views\Home\ComoFunciona.cshtml" />
+    <Content Include="Views\Manage\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
