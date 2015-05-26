@@ -36,9 +36,10 @@ namespace Frete4U.Controllers
         }
 
         // GET: tb_cd_prestador/Create
-        public ActionResult Create()
+        public ActionResult Cadastro(string id)
         {
-            return View();
+            var model = new tb_cd_prestador { Id = id };            
+            return View(model);
         }
 
         // POST: tb_cd_prestador/Create
@@ -46,7 +47,7 @@ namespace Frete4U.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,cod_prestador,nome,nomeEmpresa,CPF,CNPJ,logradouro,numeroEndereco,bairro,complemento,cidade,estado")] tb_cd_prestador tb_cd_prestador)
+        public ActionResult Cadastro([Bind(Include = "Id,cod_prestador,nome,nomeEmpresa,CPF,CNPJ,logradouro,numeroEndereco,bairro,complemento,cidade,estado")] tb_cd_prestador tb_cd_prestador)
         {
             if (ModelState.IsValid)
             {

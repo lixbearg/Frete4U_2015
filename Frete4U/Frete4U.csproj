@@ -297,7 +297,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\tb_cd_prestador\Create.cshtml" />
+    <Content Include="Views\tb_cd_prestador\Cadastro.cshtml" />
     <Content Include="Views\tb_cd_prestador\Delete.cshtml" />
     <Content Include="Views\tb_cd_prestador\Details.cshtml" />
     <Content Include="Views\tb_cd_prestador\Edit.cshtml" />
