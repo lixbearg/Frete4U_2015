@@ -217,10 +217,24 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\images\bg_01.jpg" />
-    <Content Include="Content\images\bg_02.jpg" />
+    <Content Include="Content\images\01-capa.jpg" />
+    <Content Include="Content\images\02-oGrupo.jpg" />
+    <Content Include="Content\images\03-problemaMotivador.jpg" />
+    <Content Include="Content\images\04-aSolucao.jpg" />
+    <Content Include="Content\images\05-oQueE.jpg" />
+    <Content Include="Content\images\06-ReqFuncionais.jpg" />
+    <Content Include="Content\images\07-ReqNaoFuncionais.jpg" />
+    <Content Include="Content\images\08-Interdiciplinaridade.jpg" />
+    <Content Include="Content\images\09-Ferramentas.jpg" />
+    <Content Include="Content\images\10-aAplicacao.jpg" />
+    <Content Include="Content\images\11-projetosFuturos.jpg" />
+    <Content Include="Content\images\12-conclusao.jpg" />
+    <Content Include="Content\images\13-referencias.jpg" />
+    <Content Include="Content\images\14-obrigado.jpg" />
+    <Content Include="Content\images\indeximage.jpg" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\logo_frete4U_top.png" />
+    <Content Include="Content\images\user-avatar.jpg" />
     <Content Include="Content\jquery.carousel.fullscreen.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
@@ -273,7 +287,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\ComoFunciona.cshtml" />
+    <Content Include="Views\Home\Apresentacao.cshtml" />
     <Content Include="Views\Buscar\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -297,13 +311,15 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\tb_cd_prestador\Create.cshtml" />
+    <Content Include="Views\tb_cd_prestador\Cadastro.cshtml" />
     <Content Include="Views\tb_cd_prestador\Delete.cshtml" />
     <Content Include="Views\tb_cd_prestador\Details.cshtml" />
     <Content Include="Views\tb_cd_prestador\Edit.cshtml" />
     <Content Include="Views\tb_cd_prestador\Index.cshtml" />
     <Content Include="Views\Home\SobreGrupo.cshtml" />
     <Content Include="Views\Home\Documentacao.cshtml" />
+    <Content Include="Views\Home\ComoFunciona.cshtml" />
+    <Content Include="Views\Manage\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -26,6 +26,12 @@
     text-align: center;
 }
 
+.descindex {
+    font-size: 125%;
+    text-align: justify;
+    margin-top: 40px;
+}
+
 a.logo {
     background: url(images/logo.png) no-repeat top left;
     display: block;

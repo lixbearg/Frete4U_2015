@@ -1,9 +1,10 @@
 ﻿@using Frete4U.Models
-@model IEnumerable<Frete4U.Models.tb_cd_prestador>
+@*@model IEnumerable<Frete4U.Models.tb_cd_prestador>*@
 @{
     ViewBag.Title = "Buscar";
 }
 <h1>@ViewBag.Title</h1><hr />
+
 <div class="container" style="margin-top:10px;">
     @using (Html.BeginForm())
     {
@@ -20,14 +21,24 @@
         <div class="row">
             <div class="form-inline col-md-12 col-sm-12 col-lg-12 col-xs-12" style="margin:0px -15px 20px -15px">
                 <div class="col-md-3">
-                    @Html.TextBox("CidadeOrigem", null, new { @class = "form-control", placeholder = "Cidade de Origem" })
+                    <select id="CidadeOrigem" name="CidadeOrigem" class="form-control">
+                        @foreach (var item in ((List<tb_cd_cidades>)ViewBag.ListaCidades))
+                        {
+                            <option value="@item.nom_cidade">@item.nom_cidade</option>
+                        }
+                    </select>
                 </div>
                 <div class="col-md-3">
-                    @Html.TextBox("CidadeDestino", null, new { @class = "form-control", placeholder = "Cidade de Destino" })
+                    <select id="CidadeDestino" name="CidadeDestino" class="form-control">
+                        @foreach (var item in ((List<tb_cd_cidades>)ViewBag.ListaCidades))
+                        {
+                            <option value="@item.nom_cidade">@item.nom_cidade</option>
+                        }
+                    </select>
                 </div>
                 <button class="btn btn-default btn-success" type="submit">Buscar</button>
             </div>
-        </div>     
+        </div>
     }
     <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" style="margin:0 !important; padding:0 !important;">
         <div class="panel panel-default">
@@ -41,11 +52,10 @@
                             <li>
                                 <b>Tipo de entrega:</b>
                                 <ul>
-                                    <li><label class="cursor"><input type="checkbox" />  Pequenas entregas</label></li>
-                                    <li><label class="cursor"><input type="checkbox" />  Delivery(Comida)</label></li>
-                                    <li><label class="cursor"><input type="checkbox" />  Mudança</label></li>
-                                    <li><label class="cursor"><input type="checkbox" />  Frete(Grande porte)</label></li>
-                                    <li><label class="cursor"><input type="checkbox" />  Guicho</label></li>
+                                    @foreach (var item in ((List<tb_cd_tipo_entrega>)ViewBag.TiposEntrega))
+                                    {
+                                        <li><label class="cursor"><input type="checkbox" /> @item.descricao</label></li>
+                                    }
                                 </ul>
                             </li>
                         </ul>
@@ -55,43 +65,12 @@
                     <div>
                         <ul>
                             <li>
-                                <b>Tipo de veiculo:</b>
+                                <b>Tipo de carga:</b>
                                 <ul>
-                                    <li><label class="cursor"><input type="checkbox" />  Moto</label></li>
-                                    <li><label class="cursor"><input type="checkbox" />  Caminhonete</label></li>
-                                    <li><label class="cursor"><input type="checkbox" />  Furgão</label></li>
-                                    <li><label class="cursor"><input type="checkbox" />  Reboque</label></li>
-                                    <li><label class="cursor"><input type="checkbox" />  Caminhão</label></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
-                    <div>
-                        <ul>
-                            <li>
-                                <b>Tipo de produto:</b>
-                                <ul>
-                                    <li><label class="cursor"><input type="checkbox" />  Encomenda</label></li>
-                                    <li><label class="cursor"><input type="checkbox" />  Móveis</label></li>
-                                    <li><label class="cursor"><input type="checkbox" />  Veiculo</label></li>
-                                    <li><label class="cursor"><input type="checkbox" />  Frágil</label></li>
-                                    <li><label class="cursor"><input type="checkbox" />  Inflamável</label></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
-                    <div>
-                        <ul>
-                            <li>
-                                <b>Volume:</b>
-                                <ul>
-                                    <li><label class="cursor"><input type="checkbox" />  Pequeno</label></li>
-                                    <li><label class="cursor"><input type="checkbox" />  Médio</label></li>
-                                    <li><label class="cursor"><input type="checkbox" />  Grande</label></li>
+                                    @foreach (var item in ((List<tb_cd_transporte>)ViewBag.Transportes))
+                                    {
+                                        <li><label class="cursor"><input type="checkbox" /> @item.descricao</label></li>
+                                    }
                                 </ul>
                             </li>
                         </ul>
@@ -106,12 +85,12 @@
     <div id="divResultadosBusca">
         <h1>@ViewBag.Title</h1><hr />
         <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" style="margin:0 !important; padding:0 !important;">
-            @foreach (var item in Model)
+            @foreach (var item in ((List<tb_cd_prestador>)ViewBag.Prestadores))
             {
                 <div class="panel panel-default">
                     <div class="row" style="margin:20px 0;">
                         <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
-                            <center><img src="http://www.avvocatomanfredi.it/wp-content/uploads/2013/07/user-avatar.jpg" width="150" height="150" class="img-rounded"></center>
+                            <center><img src="~/Content/images/user-avatar.jpg" width="150" height="150" class="img-rounded"></center>
                         </div>
                         <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
                             <h2>@Html.DisplayFor(modelItem => item.nomeEmpresa)</h2>
