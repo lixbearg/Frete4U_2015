@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Frete4U.Models;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace TestPage.Controllers
 {
     public class HomeController : Controller
     {
+
+        private Frete4UEntities dbfrete4u = new Frete4UEntities();
+
         public ActionResult Index()
         {
+            ViewBag.ListaCidades = (from c in dbfrete4u.tb_cd_cidades
+                                    select c).ToList();
             return View();
         }
 
