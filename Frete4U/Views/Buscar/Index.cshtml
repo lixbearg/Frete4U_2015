@@ -36,7 +36,7 @@
                         }
                     </select>
                 </div>
-                <button class="btn btn-default btn-success" type="submit">Buscar</button>
+                <button class="btn btn-default btn-success" type="button" id="Buscar">Buscar</button>
             </div>
         </div>
     }
@@ -78,43 +78,30 @@
                 </div>
             </div>
         </div>
-    </div>
-    @{
-        ViewBag.Title = "Resultados";
-    }
-    <div id="divResultadosBusca">
-        <h1>@ViewBag.Title</h1><hr />
-        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" style="margin:0 !important; padding:0 !important;">
-            @foreach (var item in ((List<tb_cd_prestador>)ViewBag.Prestadores))
-            {
-                <div class="panel panel-default">
-                    <div class="row" style="margin:20px 0;">
-                        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
-                            <center><img src="~/Content/images/user-avatar.jpg" width="150" height="150" class="img-rounded"></center>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
-                            <h2>@Html.DisplayFor(modelItem => item.nomeEmpresa)</h2>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12" style="height:30px !important;">
-                            <h4 style="margin:0;">Contato: @Html.DisplayFor(modelItem => item.nome)</h4><br />
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
-                            <h3>Cidades Atendidas</h3>
-                            @foreach (var itemcidades in item.tb_cd_cidades)
-                            {
-                                <p>@Html.DisplayFor(modelItem => itemcidades.nom_cidade)</p>
-                            }
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
-                            <h3>Serviços Oferecidos</h3>
-                            @foreach (var itementregas in item.tb_cd_tipo_entrega)
-                            {
-                                <p>@Html.DisplayFor(modelItem => itementregas.descricao)</p>
-                            }
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
+    </div>   
+    <div>
+        <h1>Resultados</h1><hr />
+        <div id="divResultadosBusca"></div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {        
+        Buscar();
+        $('#Buscar').on('click', function (e) {
+            Buscar();
+        });
+    });
+    function Buscar() {        
+        var CidadeOrigem = $('#CidadeOrigem').val();
+        var CidadeDestino = $('#CidadeDestino').val();
+        $.ajax({
+            type: "GET",
+            url: "/Buscar/Buscar",
+            data: { CidadeOrigem: CidadeOrigem, CidadeDestino: CidadeDestino },
+            success: function (data) {
+                $('#divResultadosBusca').html(data);
+            }
+        });
+    }
+</script>

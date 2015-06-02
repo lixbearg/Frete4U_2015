@@ -320,6 +320,7 @@
     <Content Include="Views\Home\Documentacao.cshtml" />
     <Content Include="Views\Home\ComoFunciona.cshtml" />
     <Content Include="Views\Manage\Edit.cshtml" />
+    <Content Include="Views\Buscar\Busca.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1,0 +1,36 @@
+﻿@using Frete4U.Models;
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" style="margin:0 !important; padding:0 !important;">
+        @foreach (var item in ((List<tb_cd_prestador>)ViewBag.Prestadores))
+    {
+            <div class="panel panel-default">
+                <div class="row" style="margin:20px 0;">
+                    <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
+                        <center><img src="~/content/images/user-avatar.jpg" width="150" height="150" class="img-rounded"></center>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                        <h2>@Html.DisplayFor(modelitem => item.nomeEmpresa)</h2>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12" style="height:30px !important;">
+                        <h4 style="margin:0;">contato: @Html.DisplayFor(modelitem => item.nome)</h4><br />
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                        <h3>cidades atendidas</h3>
+                        @foreach (var itemcidades in item.tb_cd_cidades)
+                    {
+                            <p>@Html.DisplayFor(modelitem => itemcidades.nom_cidade)</p>
+                    }
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                        <h3>serviços oferecidos</h3>
+                        @foreach (var itementregas in item.tb_cd_tipo_entrega)
+                    {
+                            <p>@Html.DisplayFor(modelitem => itementregas.descricao)</p>
+                    }
+                    </div>
+                </div>
+            </div>
+    }
+    </div>
+
+
+
